@@ -1,0 +1,5 @@
+D:\Code\EYP\EYP\EYP\bin\Debug\EYP.dacpac
+D:\Code\EYP\EYP\EYP\bin\Debug\EYP.dll
+D:\Code\EYP\EYP\EYP\bin\Debug\EYP.pdb
+D:\Code\EYP\EYP\EYP\obj\Debug\EYP.dll
+D:\Code\EYP\EYP\EYP\obj\Debug\EYP.pdb

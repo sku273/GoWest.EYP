@@ -1,0 +1,66 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Employee] (Table)
+       [dbo].[EmployeeDNA] (Table)
+       [dbo].[FeedbackQuesAns] (Table)
+       [dbo].[FeedbackQuesAnsHistory] (Table)
+       [dbo].[Issue] (Table)
+       [dbo].[IssueHistory] (Table)
+       [dbo].[Question] (Table)
+       [dbo].[QuestionType] (Table)
+       [dbo].[TrainingPlan] (Table)
+       [dbo].[TrainingPlanHistory] (Table)
+       [dbo].[EmployeeDNAType] (User-Defined Table Type)
+       [dbo].[EmployeeType] (User-Defined Table Type)
+       [dbo].[FeedbackQuesAnsType] (User-Defined Table Type)
+       [dbo].[IssueType] (User-Defined Table Type)
+       [dbo].[TrainingPlanType] (User-Defined Table Type)
+       [dbo].[FK_Employee_Employee] (Foreign Key)
+       [dbo].[FK_FeedbackQuesAns_Employee] (Foreign Key)
+       [dbo].[FK_FeedbackQuesAns_EmployeeManager] (Foreign Key)
+       [dbo].[FK_FeedbackQuesAns_Question] (Foreign Key)
+       [dbo].[FK_FeedbackQuesAnsHistory_FeedbackQuesAns] (Foreign Key)
+       [dbo].[FK_FeedbackQuesAnsHistory_Employee] (Foreign Key)
+       [dbo].[FK_FeedbackQuesAnsHistory_EmployeeManager] (Foreign Key)
+       [dbo].[FK_FeedbackQuesAnsHistory_Question] (Foreign Key)
+       [dbo].[FK_Issue_Employee] (Foreign Key)
+       [dbo].[FK_Issue_EmployeeManager] (Foreign Key)
+       [dbo].[FK_Issue_Owner] (Foreign Key)
+       [dbo].[FK_IssueHistory_Issue] (Foreign Key)
+       [dbo].[FK_IssueHistory_Employee] (Foreign Key)
+       [dbo].[FK_IssueHistory_EmployeeManager] (Foreign Key)
+       [dbo].[FK_IssueHistory_Owner] (Foreign Key)
+       [dbo].[FK_Question_QuestionType] (Foreign Key)
+       [dbo].[FK_TrainingPlan_Employee] (Foreign Key)
+       [dbo].[FK_TrainingPlan_EmployeeManager] (Foreign Key)
+       [dbo].[FK_TrainingPlanHistory_TrainingPlan] (Foreign Key)
+       [dbo].[FK_TrainingPlanHistory_Employee] (Foreign Key)
+       [dbo].[FK_TrainingPlanHistory_EmployeeManager] (Foreign Key)
+       [dbo].[FeedbackQuesAns_UpdateTrigger] (Trigger)
+       [dbo].[Issue_UpdateTrigger] (Trigger)
+       [dbo].[TrainingPlan_UpdateTrigger] (Trigger)
+       [dbo].[GetEmployeeByEmpId] (Procedure)
+       [dbo].[GetEmployeeFeedbackByEmpId] (Procedure)
+       [dbo].[GetEmployeesByProject] (Procedure)
+       [dbo].[GetFeedbackQuesAnsHistory] (Procedure)
+       [dbo].[GetIssueHistory] (Procedure)
+       [dbo].[GetQuestionsByQuestionType] (Procedure)
+       [dbo].[GetSubordinateListByManagerId] (Procedure)
+       [dbo].[GetTrainingPlanHistory] (Procedure)
+       [dbo].[InsertEmployee] (Procedure)
+       [dbo].[InsertEmployeeDNA] (Procedure)
+       [dbo].[InsertEmployeeFeeback] (Procedure)
+       [dbo].[InsertEmployeesData] (Procedure)
+       [dbo].[InsertQuestion] (Procedure)
+
+** Supporting actions

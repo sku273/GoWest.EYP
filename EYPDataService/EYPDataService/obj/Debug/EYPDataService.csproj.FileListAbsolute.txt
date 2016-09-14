@@ -1,0 +1,7 @@
+D:\Code\EYP\EYPDataService\EYPDataService\bin\EYPDataService.dll
+D:\Code\EYP\EYPDataService\EYPDataService\bin\EYPDataService.pdb
+D:\Code\EYP\EYPDataService\EYPDataService\bin\EntityFramework.dll
+D:\Code\EYP\EYPDataService\EYPDataService\bin\EntityFramework.xml
+D:\Code\EYP\EYPDataService\EYPDataService\obj\Debug\EYPDataService.dll
+D:\Code\EYP\EYPDataService\EYPDataService\obj\Debug\EYPDataService.pdb
+D:\Code\EYP\EYPDataService\EYPDataService\obj\Debug\EYPDataService.csprojResolveAssemblyReference.cache

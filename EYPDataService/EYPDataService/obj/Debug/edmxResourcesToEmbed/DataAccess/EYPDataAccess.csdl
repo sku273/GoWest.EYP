@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EYPDataAccess" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EYPEntities" p1:LazyLoadingEnabled="true">
+    <FunctionImport Name="GetEmployeeByEmpId" ReturnType="Collection(EYPDataAccess.GetEmployeeByEmpId_Result)">
+      <Parameter Name="EmpId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertEmployee">
+      <Parameter Name="EmpId" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ProjectName" Mode="In" Type="String" />
+      <Parameter Name="ManagerId" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="IsManager" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="InsertQuestion">
+      <Parameter Name="Question" Mode="In" Type="String" />
+      <Parameter Name="QuestionType" Mode="In" Type="String" />
+      <Parameter Name="DefaultAnswerValues" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetQuestionsByQuestionType" ReturnType="Collection(EYPDataAccess.GetQuestionsByQuestionType_Result)">
+      <Parameter Name="QuestionType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSubordinateListByManagerId" ReturnType="Collection(EYPDataAccess.GetSubordinateListByManagerId_Result)">
+      <Parameter Name="ManagerId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetEmployeeFeedbackByEmpId">
+      <ReturnType Type="Collection(EYPDataAccess.EmployeeFeedback_Result)" />
+      <!--<ReturnType Type="Collection(EYPDataAccess.ActionItem_Result)"/>-->
+      <ReturnType Type="Collection(EYPDataAccess.Issue_Result)" />
+      <ReturnType Type="Collection(EYPDataAccess.TrainingPlan_Result)" />
+      <ReturnType Type="Collection(EYPDataAccess.EmployeeDNA_Result)" />
+      <ReturnType Type="Collection(EYPDataAccess.EmployeeDetails_Result)" />
+      <Parameter Name="EmpId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetFeedbackQuesAnsHistory" ReturnType="Collection(EYPDataAccess.GetFeedbackQuesAnsHistory_Result)">
+      <Parameter Name="empId" Mode="In" Type="String" />
+      <Parameter Name="questionId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetIssueHistory" ReturnType="Collection(EYPDataAccess.GetIssueHistory_Result)">
+      <Parameter Name="IssueId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetTrainingPlanHistory" ReturnType="Collection(EYPDataAccess.GetTrainingPlanHistory_Result)">
+      <Parameter Name="TrainingPlanId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetEmployeesByProject" ReturnType="Collection(EYPDataAccess.GetEmployeesByProject_Result)">
+      <Parameter Name="projectName" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetEmployeeByEmpId_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Project" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerId" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="Boolean" Name="IsManager" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetQuestionsByQuestionType_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Question" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="QuestionType" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="DefaultAnswerValues" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetSubordinateListByManagerId_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Project" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerId" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="EmployeeFeedback_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="EmpId" Nullable="false" />
+    <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerId" Nullable="false" />
+    <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="QuestionId" Nullable="false" />
+    <Property Type="String" Name="Question" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="QuestionType" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Answer" Nullable="true" />
+    <Property Type="Int32" Name="RatingScale" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
+  </ComplexType>
+  <!--<ComplexType Name="ActionItem_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="EmpId" Nullable="false" />
+          <Property Type="Int32" Name="ManagerId" Nullable="false" />
+          <Property Type="String" Name="ActionItemDesc" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Remarks" Nullable="true" />
+        </ComplexType>-->
+  <ComplexType Name="Issue_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="EmpId" Nullable="false" />
+    <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerId" Nullable="false" />
+    <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IssueDesc" Nullable="false" />
+    <Property Type="String" Name="ActionItem" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="OwnerId" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="TrainingPlan_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="EmpId" Nullable="false" />
+    <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerId" Nullable="false" />
+    <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TrainingArea" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TrainingProgram" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Remarks" Nullable="true" />
+    <Property Type="String" Name="Timeframe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ClosedMonth" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="EmployeeDNA_Result">
+    <Property Type="String" Name="EmpId" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Area" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Rating" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="EmployeeDetails_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Project" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerId" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="Boolean" Name="IsManager" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetFeedbackQuesAnsHistory_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="EmpId" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ManagerId" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="QuestionId" Nullable="false" />
+    <Property Type="String" Name="Answer" Nullable="true" />
+    <Property Type="Int32" Name="RatingScale" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetIssueHistory_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="EmpId" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ManagerId" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="IssueDesc" Nullable="false" />
+    <Property Type="String" Name="ActionItem" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="OwnerName" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetTrainingPlanHistory_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="EmpId" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ManagerId" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TrainingArea" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TrainingProgram" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Remarks" Nullable="true" />
+    <Property Type="String" Name="Timeframe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ClosedMonth" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetEmployeesByProject_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EYPDataAccessStoreContainer" CdmEntityContainer="EYPEntities">
+    <FunctionImportMapping FunctionImportName="GetEmployeeByEmpId" FunctionName="EYPDataAccess.Store.GetEmployeeByEmpId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.GetEmployeeByEmpId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsManager" ColumnName="IsManager" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertEmployee" FunctionName="EYPDataAccess.Store.InsertEmployee" />
+    <FunctionImportMapping FunctionImportName="InsertQuestion" FunctionName="EYPDataAccess.Store.InsertQuestion" />
+    <FunctionImportMapping FunctionImportName="GetQuestionsByQuestionType" FunctionName="EYPDataAccess.Store.GetQuestionsByQuestionType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.GetQuestionsByQuestionType_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+          <ScalarProperty Name="DefaultAnswerValues" ColumnName="DefaultAnswerValues" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSubordinateListByManagerId" FunctionName="EYPDataAccess.Store.GetSubordinateListByManagerId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.GetSubordinateListByManagerId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEmployeeFeedbackByEmpId" FunctionName="EYPDataAccess.Store.GetEmployeeFeedbackByEmpId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.EmployeeFeedback_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="RatingScale" ColumnName="RatingScale" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+      <!--<ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.ActionItem_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="ActionItemDesc" ColumnName="ActionItemDesc" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>-->
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.Issue_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="IssueDesc" ColumnName="IssueDesc" />
+          <ScalarProperty Name="ActionItem" ColumnName="ActionItem" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.TrainingPlan_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="TrainingArea" ColumnName="TrainingArea" />
+          <ScalarProperty Name="TrainingProgram" ColumnName="TrainingProgram" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Timeframe" ColumnName="Timeframe" />
+          <ScalarProperty Name="ClosedMonth" ColumnName="ClosedMonth" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.EmployeeDNA_Result">
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.EmployeeDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsManager" ColumnName="IsManager" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetFeedbackQuesAnsHistory" FunctionName="EYPDataAccess.Store.GetFeedbackQuesAnsHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.GetFeedbackQuesAnsHistory_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="RatingScale" ColumnName="RatingScale" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetIssueHistory" FunctionName="EYPDataAccess.Store.GetIssueHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.GetIssueHistory_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="IssueDesc" ColumnName="IssueDesc" />
+          <ScalarProperty Name="ActionItem" ColumnName="ActionItem" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTrainingPlanHistory" FunctionName="EYPDataAccess.Store.GetTrainingPlanHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.GetTrainingPlanHistory_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="TrainingArea" ColumnName="TrainingArea" />
+          <ScalarProperty Name="TrainingProgram" ColumnName="TrainingProgram" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Timeframe" ColumnName="Timeframe" />
+          <ScalarProperty Name="ClosedMonth" ColumnName="ClosedMonth" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEmployeesByProject" FunctionName="EYPDataAccess.Store.GetEmployeesByProject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EYPDataAccess.GetEmployeesByProject_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

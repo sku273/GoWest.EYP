@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EYPDataAccess.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EYPDataAccessStoreContainer" />
+        <Function Name="GetEmployeeByEmpId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetEmployeeFeedbackByEmpId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetEmployeesByProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="projectName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetFeedbackQuesAnsHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empId" Type="varchar" Mode="In" />
+          <Parameter Name="questionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetIssueHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IssueId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetQuestionsByQuestionType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="QuestionType" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetSubordinateListByManagerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ManagerId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetTrainingPlanHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainingPlanId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpId" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectName" Type="varchar" Mode="In" />
+          <Parameter Name="ManagerId" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="IsManager" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="InsertQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Question" Type="varchar" Mode="In" />
+          <Parameter Name="QuestionType" Type="varchar" Mode="In" />
+          <Parameter Name="DefaultAnswerValues" Type="varchar(max)" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EYPDataAccess" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EYPEntities" p1:LazyLoadingEnabled="true" >
+          <FunctionImport Name="GetEmployeeByEmpId" ReturnType="Collection(EYPDataAccess.GetEmployeeByEmpId_Result)">
+          <Parameter Name="EmpId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertEmployee">
+            <Parameter Name="EmpId" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+            <Parameter Name="ManagerId" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="IsManager" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="InsertQuestion">
+            <Parameter Name="Question" Mode="In" Type="String" />
+            <Parameter Name="QuestionType" Mode="In" Type="String" />
+            <Parameter Name="DefaultAnswerValues" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetQuestionsByQuestionType" ReturnType="Collection(EYPDataAccess.GetQuestionsByQuestionType_Result)">
+          <Parameter Name="QuestionType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetSubordinateListByManagerId" ReturnType="Collection(EYPDataAccess.GetSubordinateListByManagerId_Result)">
+          <Parameter Name="ManagerId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetEmployeeFeedbackByEmpId">
+            <ReturnType Type="Collection(EYPDataAccess.EmployeeFeedback_Result)"/>
+            <!--<ReturnType Type="Collection(EYPDataAccess.ActionItem_Result)"/>-->
+            <ReturnType Type="Collection(EYPDataAccess.Issue_Result)"/>
+            <ReturnType Type="Collection(EYPDataAccess.TrainingPlan_Result)"/>
+            <ReturnType Type="Collection(EYPDataAccess.EmployeeDNA_Result)"/>
+            <ReturnType Type="Collection(EYPDataAccess.EmployeeDetails_Result)"/>
+            <Parameter Name="EmpId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetFeedbackQuesAnsHistory" ReturnType="Collection(EYPDataAccess.GetFeedbackQuesAnsHistory_Result)">
+            <Parameter Name="empId" Mode="In" Type="String" />
+            <Parameter Name="questionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetIssueHistory" ReturnType="Collection(EYPDataAccess.GetIssueHistory_Result)">
+          <Parameter Name="IssueId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetTrainingPlanHistory" ReturnType="Collection(EYPDataAccess.GetTrainingPlanHistory_Result)">
+          <Parameter Name="TrainingPlanId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetEmployeesByProject" ReturnType="Collection(EYPDataAccess.GetEmployeesByProject_Result)">
+            <Parameter Name="projectName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetEmployeeByEmpId_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Project" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ManagerId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="IsManager" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetQuestionsByQuestionType_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Question" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="QuestionType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DefaultAnswerValues" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetSubordinateListByManagerId_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Project" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ManagerId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="EmployeeFeedback_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpId" Nullable="false" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ManagerId" Nullable="false" />
+          <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="QuestionId" Nullable="false" />
+          <Property Type="String" Name="Question" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="QuestionType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Answer" Nullable="true" />
+          <Property Type="Int32" Name="RatingScale" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
+        </ComplexType>
+        <!--<ComplexType Name="ActionItem_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="EmpId" Nullable="false" />
+          <Property Type="Int32" Name="ManagerId" Nullable="false" />
+          <Property Type="String" Name="ActionItemDesc" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Remarks" Nullable="true" />
+        </ComplexType>-->
+        <ComplexType Name="Issue_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpId" Nullable="false" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ManagerId" Nullable="false" />
+          <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IssueDesc" Nullable="false" />
+          <Property Type="String" Name="ActionItem" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="OwnerId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TrainingPlan_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpId" Nullable="false" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ManagerId" Nullable="false" />
+          <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TrainingArea" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TrainingProgram" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" />
+          <Property Type="String" Name="Timeframe" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ClosedMonth" Nullable="true" MaxLength="50"/>
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="EmployeeDNA_Result">
+          <Property Type="String" Name="EmpId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Area" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Rating" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="EmployeeDetails_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Project" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ManagerId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="IsManager" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetFeedbackQuesAnsHistory_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ManagerId" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="QuestionId" Nullable="false" />
+          <Property Type="String" Name="Answer" Nullable="true" />
+          <Property Type="Int32" Name="RatingScale" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetIssueHistory_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ManagerId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="IssueDesc" Nullable="false" />
+          <Property Type="String" Name="ActionItem" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="OwnerName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetTrainingPlanHistory_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ManagerId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TrainingArea" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TrainingProgram" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" />
+          <Property Type="String" Name="Timeframe" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ClosedMonth" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetEmployeesByProject_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EYPDataAccessStoreContainer" CdmEntityContainer="EYPEntities" >
+          <FunctionImportMapping FunctionImportName="GetEmployeeByEmpId" FunctionName="EYPDataAccess.Store.GetEmployeeByEmpId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.GetEmployeeByEmpId_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsManager" ColumnName="IsManager" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertEmployee" FunctionName="EYPDataAccess.Store.InsertEmployee" />
+          <FunctionImportMapping FunctionImportName="InsertQuestion" FunctionName="EYPDataAccess.Store.InsertQuestion" />
+          <FunctionImportMapping FunctionImportName="GetQuestionsByQuestionType" FunctionName="EYPDataAccess.Store.GetQuestionsByQuestionType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.GetQuestionsByQuestionType_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+                <ScalarProperty Name="DefaultAnswerValues" ColumnName="DefaultAnswerValues" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSubordinateListByManagerId" FunctionName="EYPDataAccess.Store.GetSubordinateListByManagerId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.GetSubordinateListByManagerId_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEmployeeFeedbackByEmpId" FunctionName="EYPDataAccess.Store.GetEmployeeFeedbackByEmpId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.EmployeeFeedback_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="RatingScale" ColumnName="RatingScale" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+            <!--<ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.ActionItem_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="ActionItemDesc" ColumnName="ActionItemDesc" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>-->
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.Issue_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="IssueDesc" ColumnName="IssueDesc" />
+                <ScalarProperty Name="ActionItem" ColumnName="ActionItem" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.TrainingPlan_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="TrainingArea" ColumnName="TrainingArea" />
+                <ScalarProperty Name="TrainingProgram" ColumnName="TrainingProgram" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Timeframe" ColumnName="Timeframe" />
+                <ScalarProperty Name="ClosedMonth" ColumnName="ClosedMonth" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.EmployeeDNA_Result">
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.EmployeeDetails_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsManager" ColumnName="IsManager" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetFeedbackQuesAnsHistory" FunctionName="EYPDataAccess.Store.GetFeedbackQuesAnsHistory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.GetFeedbackQuesAnsHistory_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="RatingScale" ColumnName="RatingScale" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetIssueHistory" FunctionName="EYPDataAccess.Store.GetIssueHistory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.GetIssueHistory_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="IssueDesc" ColumnName="IssueDesc" />
+                <ScalarProperty Name="ActionItem" ColumnName="ActionItem" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTrainingPlanHistory" FunctionName="EYPDataAccess.Store.GetTrainingPlanHistory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.GetTrainingPlanHistory_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="TrainingArea" ColumnName="TrainingArea" />
+                <ScalarProperty Name="TrainingProgram" ColumnName="TrainingProgram" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Timeframe" ColumnName="Timeframe" />
+                <ScalarProperty Name="ClosedMonth" ColumnName="ClosedMonth" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEmployeesByProject" FunctionName="EYPDataAccess.Store.GetEmployeesByProject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EYPDataAccess.GetEmployeesByProject_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
